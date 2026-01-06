@@ -1,12 +1,13 @@
 <template>
-  <div class="login-view">
-    <h1>Login</h1>
-    <form @submit.prevent="handleLogin">
+  <div class="register">
+    <h1>Register</h1>
+    <form @submit.prevent="handleRegister">
       <input v-model="email" type="email" placeholder="Email" required>
       <input v-model="password" type="password" placeholder="Password" required>
-      <button type="submit">Login</button>
+      <input v-model="confirmPassword" type="password" placeholder="Confirm Password" required>
+      <button type="submit">Register</button>
     </form>
-    <p>Don't have an account? <router-link to="/register">Register</router-link></p>
+    <p>Already have an account? <router-link to="/">Login</router-link></p>
   </div>
 </template>
 
@@ -16,17 +17,18 @@ import { useRouter } from 'vue-router'
 
 const email = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 const router = useRouter()
 
-const handleLogin = () => {
-  // TODO: Implement actual login logic
+const handleRegister = () => {
+  // Registration logic
   localStorage.setItem('user-token', 'dummy-token')
   router.push('/dashboard')
 }
 </script>
 
 <style scoped>
-.login-view {
+.register {
   max-width: 400px;
   margin: 0 auto;
   padding: 2rem;

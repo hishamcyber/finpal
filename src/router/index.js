@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// Lazy load all components for better performance
 const routes = [
   {
     path: '/',
@@ -16,7 +15,7 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('@/views/DashboardView.vue'),
-    meta: { requiresAuth: true } // Protected route
+    meta: { requiresAuth: true }
   },
   {
     path: '/education',
@@ -55,7 +54,6 @@ const routes = [
     component: () => import('@/views/ExchangesView.vue'),
     meta: { requiresAuth: true }
   },
-  // 404 page
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -64,16 +62,15 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
-// Navigation guard for authentication
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('user-token') // Or use Vuex/Pinia
+  const isAuthenticated = localStorage.getItem('user-token')
   
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/') // Redirect to login
+    next('/')
   } else {
     next()
   }
