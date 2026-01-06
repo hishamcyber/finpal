@@ -11,48 +11,49 @@ const routes = [
     name: 'Register',
     component: () => import('@/views/RegisterView.vue')
   },
+  // Protected routes with Layout wrapper
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import('@/views/DashboardView.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/education',
-    name: 'Education',
-    component: () => import('@/views/EducationView.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/statistics',
-    name: 'Statistics',
-    component: () => import('@/views/StatisticsView.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/notifications',
-    name: 'Notifications',
-    component: () => import('@/views/NotificationsView.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/members',
-    name: 'Members',
-    component: () => import('@/views/MembersView.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/members/:id',
-    name: 'MemberDetail',
-    component: () => import('@/views/MemberDetailView.vue'),
+    path: '/',
+    component: () => import('@/components/mainLayout.vue'), // Lazy loaded
     meta: { requiresAuth: true },
-    props: true
-  },
-  {
-    path: '/exchanges',
-    name: 'Exchanges',
-    component: () => import('@/views/ExchangesView.vue'),
-    meta: { requiresAuth: true }
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/DashboardView.vue')
+      },
+      {
+        path: 'education',
+        name: 'Education',
+        component: () => import('@/views/EducationView.vue')
+      },
+      {
+        path: 'statistics',
+        name: 'Statistics',
+        component: () => import('@/views/StatisticsView.vue')
+      },
+      {
+        path: 'notifications',
+        name: 'Notifications',
+        component: () => import('@/views/NotificationsView.vue')
+      },
+      {
+        path: 'members',
+        name: 'Members',
+        component: () => import('@/views/MembersView.vue')
+      },
+      {
+        path: 'members/:id',
+        name: 'MemberDetail',
+        component: () => import('@/views/MemberDetailView.vue'),
+        props: true
+      },
+      {
+        path: 'exchanges',
+        name: 'Exchanges',
+        component: () => import('@/views/ExchangesView.vue')
+      }
+    ]
   },
   {
     path: '/:pathMatch(.*)*',
@@ -62,7 +63,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL), // Updated for Vite
   routes
 })
 
@@ -70,7 +71,9 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem('user-token')
   
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/')
+    next('/') // Redirect to login
+  } else if ((to.name === 'Login' || to.name === 'Register') && isAuthenticated) {
+    next('/dashboard') // Redirect authenticated users away from auth pages
   } else {
     next()
   }
