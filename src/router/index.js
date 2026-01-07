@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+  // Public routes
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: () => import('@/views/LoginView.vue')
   },
@@ -11,12 +12,17 @@ const routes = [
     name: 'Register',
     component: () => import('@/views/RegisterView.vue')
   },
-  // Protected routes with Layout wrapper
+
+  // Protected routes with layout
   {
     path: '/',
-    component: () => import('@/components/mainLayout.vue'), // Lazy loaded
+    component: () => import('@/components/mainLayout.vue'),
     meta: { requiresAuth: true },
     children: [
+      {
+        path: '',
+        redirect: '/dashboard'
+      },
       {
         path: 'dashboard',
         name: 'Dashboard',
@@ -59,6 +65,8 @@ const routes = [
       }
     ]
   },
+
+  // 404
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -67,17 +75,21 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL), // Updated for Vite
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 
+// Auth guard
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem('user-token')
-  
+
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/') // Redirect to login
-  } else if ((to.name === 'Login' || to.name === 'Register') && isAuthenticated) {
-    next('/dashboard') // Redirect authenticated users away from auth pages
+    next('/login')
+  } else if (
+    (to.name === 'Login' || to.name === 'Register') &&
+    isAuthenticated
+  ) {
+    next('/dashboard')
   } else {
     next()
   }
