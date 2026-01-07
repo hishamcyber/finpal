@@ -1,339 +1,317 @@
 <template>
-  <div class="transfer-page">
-    <!-- Main Container -->
-    <div class="container">
-      <!-- Header -->
-      <h1 class="page-title">Transfer Funds</h1>
-      
-      <!-- Form Container -->
-      <div class="form-container">
-        
-        <!-- Send From -->
-        <div class="form-group">
-          <h2 class="section-title">Send from</h2>
-          <div class="input-line">
-            <div class="input-label">My Balance</div>
-            <div class="input-value">¥ 2,711,213.00</div>
+  <div class="page">
+    <h1 class="title">Transfer Funds</h1>
+
+    <!-- TOP CARD -->
+    <div class="card top-card">
+      <div class="left">
+        <div class="field">
+          <label>Send from</label>
+          <div class="select">
+            <div class="row">
+              <img class="icon" src="https://i.imgur.com/2yaf2wb.png" />
+              <span>My Balance</span>
+            </div>
+            <div class="row">
+              <span class="money">¥ 2,711,213.00</span>
+              <span class="arrow">▾</span>
+            </div>
           </div>
         </div>
-        
-        <!-- Send To -->
-        <div class="form-group">
-          <h2 class="section-title">Send to</h2>
-          <div class="input-line">
-            <div class="input-label">James</div>
-            <div class="input-email">bullshit@gmail.com</div>
+
+        <div class="field">
+          <label>Send to</label>
+          <div class="select">
+            <div class="row">
+              <img class="avatar" src="https://randomuser.me/api/portraits/men/45.jpg" />
+              <span>James</span>
+            </div>
+            <div class="row">
+              <span class="email">bullshit@gmail.com</span>
+              <span class="arrow">▾</span>
+            </div>
           </div>
         </div>
-        
-        <!-- Amount -->
-        <div class="form-group">
-          <h2 class="section-title">How much you want to send?</h2>
-          <div class="input-line">
-            <div class="currency-symbol">¥</div>
-            <div class="input-value">2500.00</div>
-            <div class="country-tag">United kingdom</div>
-          </div>
-        </div>
-        
-        <!-- Date and Time -->
-        <div class="form-group">
-          <h2 class="section-title">Date and time</h2>
-          <div class="datetime-group">
-            <div class="date-value">2025/12/27</div>
-            <div class="time-value">14 : 06</div>
-          </div>
-        </div>
-        
-        <!-- Divider -->
-        <div class="divider"></div>
-        
-        <!-- E-receipt Checkbox -->
-        <div class="checkbox-group">
-          <input type="checkbox" id="receipt" checked>
-          <label for="receipt" class="checkbox-label">
-            Send the e-receipt to email
+      </div>
+
+      <div class="right">
+        <div class="switch-box">
+          <span>Schedule for Later</span>
+          <label class="switch">
+            <input type="checkbox" />
+            <span></span>
           </label>
         </div>
-        
-        <!-- Password -->
-        <div class="form-group">
-          <h2 class="section-title">Payment Password</h2>
-          <input 
-            type="password" 
-            class="password-input" 
-            placeholder="Enter your password"
-            v-model="password"
-          >
+
+        <div class="switch-box">
+          <span>Record Transfer</span>
+          <label class="switch">
+            <input type="checkbox" />
+            <span></span>
+          </label>
         </div>
-        
-        <!-- Confirm Button -->
-        <button class="confirm-btn" @click="confirmTransfer">
-          Confirm
-        </button>
       </div>
+    </div>
+
+    <!-- MIDDLE CARD -->
+    <div class="card">
+      <p class="center-label">How much you want to send?</p>
+
+      <div class="row">
+        <input class="amount" value="¥ 2'500.00" />
+        <div class="country">
+          United kingdom
+          <img src="https://i.imgur.com/2yaf2wb.png" />
+        </div>
+      </div>
+
+      <p class="center-label">Date and time</p>
+
+      <div class="row">
+        <div class="input-icon">
+          <input value="2025/12/27" />
+          📅
+        </div>
+        <div class="input-icon">
+          <input value="14 : 06" />
+          🕒
+        </div>
+      </div>
+
+      <label class="checkbox">
+        <input type="checkbox" />
+        Send the e-receipt to email
+      </label>
+    </div>
+
+    <!-- BOTTOM CARD -->
+    <div class="card bottom">
+      <div class="password-row">
+        <div class="field full">
+          <label>Payment Password</label>
+          <input />
+        </div>
+
+        <div class="switch-box small">
+          <span>Show password</span>
+          <label class="switch">
+            <input type="checkbox" />
+            <span></span>
+          </label>
+        </div>
+      </div>
+
+      <button class="confirm">Confirm</button>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'TransferPage',
-  data() {
-    return {
-      password: ''
-    }
-  },
-  methods: {
-    confirmTransfer() {
-      if (this.password) {
-        alert('Transfer confirmed successfully!');
-      } else {
-        alert('Please enter your password');
-      }
-    }
-  }
-}
+<script setup>
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.page {
+  background: #f6f8fc;
+  min-height: 100vh;
+  padding: 40px;
+  font-family: Inter, sans-serif;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  background-color: #f8fafc;
-  padding: 20px;
-}
-
-.transfer-page {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.container {
-  background: white;
-  border-radius: 20px;
-  padding: 40px 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
-}
-
-.page-title {
-  font-size: 28px;
+.title {
+  font-size: 32px;
   font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 30px;
-  text-align: center;
-  letter-spacing: -0.5px;
+  margin-bottom: 25px;
+  color: #2b2f4c;
 }
 
-.form-container {
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 26px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.top-card {
+  display: flex;
+  gap: 25px;
+}
+
+.left { flex: 2 }
+.right {
+  flex: 1;
+  background: #f6f8fc;
+  border-radius: 22px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 
-.form-group {
-  margin-bottom: 5px;
-}
-
-.section-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-}
-
-.input-line {
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  min-height: 48px;
-  transition: all 0.2s;
-}
-
-.input-line:hover {
-  border-color: #d1d5db;
-  background: #ffffff;
-}
-
-.input-label {
-  font-size: 16px;
-  color: #374151;
-  font-weight: 500;
-  flex: 1;
-}
-
-.input-value {
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  font-family: 'SF Mono', Monaco, monospace;
-}
-
-.input-email {
-  font-size: 15px;
-  color: #6b7280;
-  font-family: 'SF Mono', Monaco, monospace;
-  flex: 1;
-}
-
-.currency-symbol {
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  margin-right: 8px;
-  font-family: 'SF Mono', Monaco, monospace;
-}
-
-.country-tag {
-  background: #e5e7eb;
-  color: #4b5563;
+/* FIELDS */
+.field label {
   font-size: 13px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-left: 12px;
-  white-space: nowrap;
+  color: #9aa0b4;
 }
 
-.datetime-group {
+.select {
+  background: #f6f8fc;
+  border-radius: 18px;
+  padding: 16px 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  padding: 12px 16px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  min-height: 48px;
+  margin-top: 8px;
 }
 
-.date-value, .time-value {
-  font-size: 16px;
-  font-weight: 500;
-  color: #111827;
-  font-family: 'SF Mono', Monaco, monospace;
-}
-
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    #e5e7eb 20%, 
-    #e5e7eb 80%, 
-    transparent 100%
-  );
-  margin: 20px 0;
-}
-
-.checkbox-group {
+.row {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 0;
-  margin: 10px 0;
 }
 
-.checkbox-group input[type="checkbox"] {
+.icon {
+  width: 40px;
+}
+
+.avatar {
+  width: 32px;
+  border-radius: 50%;
+}
+
+.money {
+  font-weight: 600;
+}
+
+.email {
+  color: #9aa0b4;
+  font-size: 13px;
+}
+
+.arrow {
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* SWITCH */
+.switch-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #8b90a8;
+}
+
+.switch {
+  position: relative;
+  width: 46px;
+  height: 24px;
+}
+.switch input {
+  display: none;
+}
+.switch span {
+  position: absolute;
+  background: #cfd3e6;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+.switch span::after {
+  content: '';
   width: 18px;
   height: 18px;
-  accent-color: #3b82f6;
-  cursor: pointer;
-}
-
-.checkbox-label {
-  font-size: 15px;
-  color: #374151;
-  font-weight: 500;
-  cursor: pointer;
-  user-select: none;
-}
-
-.password-input {
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #f9fafb;
-  color: #111827;
-  transition: all 0.2s;
-}
-
-.password-input:focus {
-  outline: none;
-  border-color: #3b82f6;
   background: white;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+}
+.switch input:checked + span {
+  background: #6c63ff;
+}
+.switch input:checked + span::after {
+  left: 25px;
 }
 
-.password-input::placeholder {
-  color: #9ca3af;
+/* MIDDLE */
+.center-label {
+  text-align: center;
+  color: #9aa0b4;
+  font-size: 14px;
+  margin: 15px 0;
 }
 
-.confirm-btn {
+.amount {
+  flex: 1;
+  font-size: 20px;
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  background: #f6f8fc;
+}
+
+.country {
+  flex: 1;
+  background: #f6f8fc;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-icon {
+  flex: 1;
+  background: #f6f8fc;
+  padding: 14px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-icon input {
+  border: none;
+  background: transparent;
+}
+
+.checkbox {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  color: #8b90a8;
+}
+
+/* BOTTOM */
+.password-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.full {
+  flex: 1;
+}
+
+.bottom input {
   width: 100%;
   padding: 16px;
-  background: #3b82f6;
+  border-radius: 16px;
+  border: none;
+  background: #f6f8fc;
+}
+
+.confirm {
+  margin: 30px auto 0;
+  display: block;
+  width: 240px;
+  padding: 16px;
+  font-size: 20px;
   color: white;
   border: none;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 20px;
-  letter-spacing: 0.5px;
-}
-
-.confirm-btn:hover {
-  background: #2563eb;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.confirm-btn:active {
-  transform: translateY(0);
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-  .transfer-page {
-    padding: 20px 10px;
-  }
-  
-  .container {
-    padding: 30px 20px;
-    border-radius: 16px;
-  }
-  
-  .page-title {
-    font-size: 24px;
-  }
-  
-  .datetime-group {
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  
-  .input-line {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  
-  .country-tag {
-    margin-left: 0;
-  }
+  border-radius: 30px;
+  background: linear-gradient(90deg,#f48fb1,#7b6cff);
 }
 </style>
