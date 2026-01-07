@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'  // ADD THIS LINE
+import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+  // Public routes
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: () => import('@/views/LoginView.vue')
   },
@@ -11,14 +12,15 @@ const routes = [
     name: 'Register',
     component: () => import('@/views/RegisterView.vue')
   },
-  // Protected routes - Dashboard as main route
+  // Dashboard and protected routes
   {
-    path: '/dashboard',
+    path: '/',
     component: () => import('@/components/mainLayout.vue'),
     meta: { requiresAuth: true },
+    redirect: '/dashboard',  // Add redirect here
     children: [
       {
-        path: '',  // Empty path = default child
+        path: 'dashboard',  // Changed from '' to 'dashboard'
         name: 'Dashboard',
         component: () => import('@/views/DashboardView.vue')
       },
@@ -45,8 +47,7 @@ const routes = [
       {
         path: 'members/:id',
         name: 'MemberDetail',
-        component: () => import('@/views/MemberDetailView.vue'),
-        props: true
+        component: () => import('@/views/MemberDetailView.vue')
       },
       {
         path: 'exchanges',
@@ -55,6 +56,7 @@ const routes = [
       }
     ]
   },
+  // 404
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -71,9 +73,9 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem('user-token')
   
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/') // Redirect to login
+    next('/login') // Redirect to login page
   } else if ((to.name === 'Login' || to.name === 'Register') && isAuthenticated) {
-    next('/dashboard') // Go to dashboard home
+    next('/dashboard') // Redirect to dashboard
   } else {
     next()
   }

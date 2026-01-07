@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #C5CEED!important;
+}
+
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  background: #f4f7fb;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile img {
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.profile-info h4 {
+  font-size: 16px;
+}
+
+.role {
+  font-size: 12px;
+  color: gray;
+}
+
+.streak {
+  font-size: 12px;
+  color: orange;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: #555;
+  cursor: pointer;
+}
+
+.menu a i {
+  margin-right: 10px;
+}
+
+.menu .active {
+  background: #eef3ff;
+  color: #3b6cff;
+  border-radius: 8px;
+}
+
+.logout {
+  margin-top: auto;
+  color: #999;
+  cursor: pointer;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  font-size: 26px;
+}
+
+.icons i {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.search {
+  width: 100%;
+  padding: 12px;
+  margin: 20px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Members */
+.member-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.member-info {
+  display: flex;
+  align-items: center;
+}
+
+.member-info img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.member-info h4 {
+  font-size: 16px;
+}
+
+.member-info p {
+  font-size: 12px;
+  color: gray;
+}
+
+.message {
+  font-size: 13px;
+  color: #555;
+}
+
+.transfer {
+  background: #eaf0ff;
+  color: #3b6cff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.transfer i {
+  margin-right: 6px;
+}

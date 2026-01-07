@@ -1,6 +1,5 @@
 <template>
   <div class="app">
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="profile">
         <img src="https://wallpaperaccess.com/full/2580788.jpg" alt="avatar" />
@@ -10,53 +9,50 @@
       </div>
 
       <nav>
-        <a
-          href="#"
-          :class="{ active: isActive('/dashboard') }"
-          @click.prevent="go('/dashboard')"
+        <!-- CORRECTED PATHS: Remove /app/ prefix -->
+        <a 
+          :class="{ active: isActive('/') }"
+          @click.prevent="go('/')"
         >
           Dashboard
         </a>
 
         <a
           href="#"
-          :class="{ active: isActive('/dashboard/statistics') }"
-          @click.prevent="go('/dashboard/statistics')"
+          :class="{ active: isActive('/statistics') }"
+          @click.prevent="go('/statistics')"
         >
           Statistics
         </a>
 
         <a
           href="#"
-          :class="{ active: isActive('/dashboard/members') }"
-          @click.prevent="go('/dashboard/members')"
+          :class="{ active: isActive('/members') }"
+          @click.prevent="go('/members')"
         >
           Members
         </a>
 
         <a
           href="#"
-          :class="{ active: isActive('/dashboard/notifications') }"
-          @click.prevent="go('/dashboard/notifications')"
+          :class="{ active: isActive('/notifications') }"
+          @click.prevent="go('/notifications')"
         >
           Notifications
         </a>
 
         <a
           href="#"
-          :class="{ active: isActive('/dashboard/exchanges') }"
-          @click.prevent="go('/dashboard/exchanges')"
+          :class="{ active: isActive('/exchanges') }"
+          @click.prevent="go('/exchanges')"
         >
           Exchanges
         </a>
       </nav>
 
-      <div class="logout" @click="handleLogout">
-        Log out
-      </div>
+      <div class="logout" @click="logout">Log out</div>
     </aside>
 
-    <!-- Main -->
     <main class="main-content">
       <router-view />
     </main>
@@ -128,7 +124,7 @@ const isActive = (path) => {
   return route.path === path
 }
 
-const handleLogout = () => {
+const logout = () => {
   // Clear all user-related localStorage
   localStorage.removeItem('user-token')
   localStorage.removeItem('user-id')
@@ -139,11 +135,43 @@ const handleLogout = () => {
   localStorage.removeItem('user-transactions')
   localStorage.removeItem('user-createdAt')
   
+  // Also clear user-specific data if using that system
+  const currentUserId = localStorage.getItem('currentUserId')
+  if (currentUserId) {
+    localStorage.removeItem('currentUserId')
+    // Remove user-specific keys
+    const keysToRemove = []
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i)
+      if (key.startsWith(`user_${currentUserId}_`)) {
+        keysToRemove.push(key)
+      }
+    }
+    keysToRemove.forEach(key => localStorage.removeItem(key))
+  }
+  
   // Redirect to login
   router.push('/')
+  
+  console.log('User logged out successfully')
 }
 </script>
 
 <style>
-@import '@/assets/styles/layout.css';
+@import "@/assets/styles/layout.css";
+
+.badge {
+  background: #ff3b30;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.sidebar nav a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>
