@@ -46,7 +46,11 @@ const routes = [
         path: 'members/:id',
         name: 'MemberDetail',
         component: () => import('@/views/MemberDetailView.vue'),
-        props: true
+        props: (route) => ({ 
+          id: parseInt(route.params.id),
+          name: route.query.name || '',
+          avatar: route.query.avatar || ''
+        })
       },
       {
         path: 'exchanges',
