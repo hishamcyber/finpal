@@ -1,30 +1,6 @@
 <template>
   <div class="app-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="profile">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" />
-        <div class="profile-info">
-          <h4>Justin Morrison</h4>
-          <span class="role">Software Engineer</span>
-          <span class="streak">🔥 659 Streak</span>
-        </div>
-      </div>
-
-      <nav class="menu">
-        <router-link to="/dashboard"><i class="fas fa-home"></i> Dashboard</router-link>
-        <router-link to="/statistics"><i class="fas fa-chart-bar"></i> Statistics</router-link>
-        <router-link to="/members"><i class="fas fa-users"></i> Members</router-link>
-        <router-link to="/notifications"><i class="fas fa-bell"></i> Notifications</router-link>
-        <router-link to="/exchanges"><i class="fas fa-exchange-alt"></i> Exchanges</router-link>
-      </nav>
-
-      <div class="logout">
-        <i class="fas fa-sign-out-alt"></i> Login
-      </div>
-    </aside>
-
-    <!-- Chat Area -->
+    <!-- Main Chat Area -->
     <main class="chat-container">
       <!-- Chat Header with Back Arrow -->
       <header class="chat-header">
@@ -35,7 +11,7 @@
           <div class="member-info">
             <img :src="currentMember.avatar" class="member-avatar" />
             <div class="member-name-container">
-              <h1># {{ currentMember.name }}</h1>
+              <h1>{{ currentMember.name }}</h1>
               <p class="status">Active today</p>
             </div>
           </div>
@@ -59,7 +35,7 @@
           <!-- Their Message 1 -->
           <div class="message theirs">
             <div class="message-bubble">
-              <p class="message-text"><strong>What is it bro? Im all ears .?</strong></p>
+              <p class="message-text"><strong>What is it bro? Im all ears. ?</strong></p>
             </div>
             <div class="message-time">14:06</div>
           </div>
@@ -69,15 +45,15 @@
             <div class="message-bubble">
               <p class="message-text">Its almost time for the deadline on the rent I just wanted to let you know in advance.</p>
             </div>
-            <div class="message-time">14:17</div>
+            <div class="message-time">16:08</div>
           </div>
 
           <!-- Their Message 2 -->
           <div class="message theirs">
             <div class="message-bubble">
-              <p class="message-text"><strong>Thanks for sending the rent! 😊️</strong></p>
+              <p class="message-text"><strong>Thanks for sending the rent!</strong></p>
             </div>
-            <div class="message-time">16:31</div>
+            <div class="message-time">16:17</div>
           </div>
         </div>
 
@@ -101,7 +77,7 @@
             <div class="message-bubble">
               <p class="message-text"><strong>Sure, it's $85. I'll send you the receipt.</strong></p>
             </div>
-            <div class="message-time">17:22</div>
+            <div class="message-time">17:08</div>
           </div>
 
           <!-- Payment Message -->
@@ -114,6 +90,14 @@
                   <p class="payment-amount">$85.00</p>
                 </div>
               </div>
+            </div>
+            <div class="message-time">17:22</div>
+          </div>
+
+          <!-- Your Latest Message -->
+          <div class="message yours">
+            <div class="message-bubble">
+              <p class="message-text">I wanter to ask you something ---</p>
             </div>
             <div class="message-time">17:30</div>
           </div>
@@ -132,12 +116,12 @@
           <input 
             v-model="newMessage" 
             type="text" 
-            placeholder="I wanter to ask you something ....." 
+            placeholder="Type your message..." 
             class="message-input"
             @keyup.enter="sendMessage"
           />
           
-          <!-- Transfer Button - Enhanced -->
+          <!-- Transfer Button - Cleaner -->
           <button class="icon-btn transfer-btn" @click="openTransferModal">
             <i class="fas fa-exchange-alt"></i>
             <span class="transfer-text">Transfer</span>
@@ -145,19 +129,19 @@
           
           <!-- Send Button -->
           <button class="send-btn" @click="sendMessage">
-            <i class="fas fa-paper-plane"></i> Send(S)
+            <i class="fas fa-paper-plane"></i> Send(5)
           </button>
         </div>
         
-        <!-- Quick Action Buttons -->
+        <!-- Clean Quick Action Buttons -->
         <div class="quick-actions">
-          <button class="quick-action-btn">
+          <button class="quick-action-btn" @click="openRequestMoney">
             <i class="fas fa-money-bill-wave"></i> Request Money
           </button>
-          <button class="quick-action-btn">
+          <button class="quick-action-btn" @click="openSplitBill">
             <i class="fas fa-receipt"></i> Split Bill
           </button>
-          <button class="quick-action-btn">
+          <button class="quick-action-btn" @click="setReminder">
             <i class="fas fa-calendar-alt"></i> Set Reminder
           </button>
         </div>
@@ -177,8 +161,8 @@ const showEmojiPicker = ref(false)
 
 const currentMember = ref({
   id: route.params.id || 1,
-  name: route.query.name || 'Alex Chen',
-  avatar: route.query.avatar || 'https://randomuser.me/api/portraits/men/11.jpg'
+  name: route.query.name || 'Jamal Williams',
+  avatar: route.query.avatar || 'https://randomuser.me/api/portraits/men/32.jpg'
 })
 
 const goBack = () => {
@@ -202,162 +186,67 @@ const openTransferModal = () => {
   // You can add modal logic here
 }
 
+const openRequestMoney = () => {
+  console.log('Opening request money')
+}
+
+const openSplitBill = () => {
+  console.log('Opening split bill')
+}
+
+const setReminder = () => {
+  console.log('Setting reminder')
+}
+
 onMounted(() => {
   console.log('Member ID:', route.params.id)
 })
 </script>
 
 <style scoped>
-/* Main container */
+/* Main container - Clean */
 .app-container {
   display: flex;
   height: 100vh;
-  background: #f0f2f5;
+  background: #f5f7fa;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 280px;
-  background: #ffffff;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #e1e5eb;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #f0f2f5;
-}
-
-.profile img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid #4a6cf7;
-  object-fit: cover;
-}
-
-.profile-info h4 {
-  margin: 0;
-  font-size: 16px;
-  color: #1a1a1a;
-  font-weight: 600;
-}
-
-.role {
-  display: block;
-  color: #666666;
-  font-size: 14px;
-  margin-top: 2px;
-}
-
-.streak {
-  display: block;
-  color: #ff6b00;
-  font-size: 14px;
-  margin-top: 4px;
-  font-weight: 500;
-}
-
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-}
-
-.menu a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  color: #555555;
-  text-decoration: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.2s;
-  border: none;
-  background: transparent;
-}
-
-.menu a:hover {
-  background: #f5f7fa;
-  color: #333333;
-}
-
-.menu a.router-link-active {
-  background: #4a6cf7;
-  color: white;
-}
-
-.menu i {
-  width: 20px;
-  text-align: center;
-  font-size: 16px;
-}
-
-.logout {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  color: #666666;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: background-color 0.2s;
-  margin-top: auto;
-  border: 1px solid #e1e5eb;
-  background: white;
-}
-
-.logout:hover {
-  background: #f5f7fa;
-  color: #333333;
-}
-
-/* Chat Container */
+/* Chat Container - Full width */
 .chat-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  margin: 20px;
+  margin: 15px;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   overflow: hidden;
   border: 1px solid #e1e5eb;
 }
 
 /* Chat Header with Back Arrow */
 .chat-header {
-  padding: 20px 30px;
+  padding: 18px 25px;
   background: #ffffff;
   border-bottom: 1px solid #e1e5eb;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  backdrop-filter: blur(10px);
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 
 .back-btn {
   background: #f0f2f5;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -365,7 +254,7 @@ onMounted(() => {
   cursor: pointer;
   transition: all 0.3s;
   color: #4a6cf7;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .back-btn:hover {
@@ -377,12 +266,12 @@ onMounted(() => {
 .member-info {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .member-avatar {
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   border: 2px solid #4a6cf7;
   object-fit: cover;
@@ -390,26 +279,26 @@ onMounted(() => {
 
 .member-name-container h1 {
   margin: 0;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #1a1a1a;
 }
 
 .status {
-  margin: 4px 0 0 0;
-  color: #666666;
-  font-size: 14px;
-  font-weight: 400;
+  margin: 3px 0 0 0;
+  color: #10b981;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .header-right {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .call-btn, .video-btn {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: none;
   display: flex;
@@ -417,16 +306,16 @@ onMounted(() => {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .call-btn {
   background: #e8f5e9;
-  color: #4caf50;
+  color: #10b981;
 }
 
 .call-btn:hover {
-  background: #4caf50;
+  background: #10b981;
   color: white;
   transform: scale(1.1);
 }
@@ -445,7 +334,7 @@ onMounted(() => {
 /* Chat Messages */
 .chat-messages {
   flex: 1;
-  padding: 25px 30px;
+  padding: 20px 25px;
   overflow-y: auto;
   background: #f8f9fa;
 }
@@ -457,17 +346,19 @@ onMounted(() => {
 .timestamp {
   text-align: center;
   color: #888888;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
-  margin: 20px 0 15px 0;
+  margin: 15px 0 12px 0;
   letter-spacing: 0.3px;
+  text-transform: uppercase;
 }
 
 .message {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   display: flex;
   flex-direction: column;
-  max-width: 70%;
+  max-width: 75%;
+  animation: fadeIn 0.3s ease;
 }
 
 .message.theirs {
@@ -478,12 +369,23 @@ onMounted(() => {
   align-self: flex-end;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .message-bubble {
-  padding: 12px 18px;
+  padding: 10px 16px;
   border-radius: 18px;
   line-height: 1.4;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .theirs .message-bubble {
@@ -500,15 +402,15 @@ onMounted(() => {
 
 .message-text {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.4;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .message-time {
-  font-size: 11px;
+  font-size: 10px;
   color: #888888;
-  margin-top: 6px;
-  padding: 0 8px;
+  margin-top: 4px;
+  padding: 0 6px;
   font-weight: 400;
 }
 
@@ -529,38 +431,51 @@ onMounted(() => {
 .payment-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .payment-info i {
-  font-size: 20px;
+  font-size: 18px;
   background: rgba(255, 255, 255, 0.2);
-  padding: 10px;
+  padding: 8px;
   border-radius: 50%;
 }
 
 .payment-title {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
 }
 
 .payment-amount {
-  margin: 4px 0 0 0;
-  font-size: 18px;
+  margin: 3px 0 0 0;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .divider {
   height: 1px;
-  background: #e1e5eb;
-  margin: 30px 0;
+  background: linear-gradient(to right, transparent, #e1e5eb, transparent);
+  margin: 25px 0;
   position: relative;
+}
+
+.divider:before {
+  content: 'Earlier';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f8f9fa;
+  color: #888888;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 /* Message Input Container */
 .message-input-container {
-  padding: 20px 30px;
+  padding: 15px 25px;
   background: #ffffff;
   border-top: 1px solid #e1e5eb;
 }
@@ -568,19 +483,19 @@ onMounted(() => {
 .input-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: #f8f9fa;
-  padding: 8px 8px 8px 20px;
-  border-radius: 30px;
-  border: 2px solid #e1e5eb;
+  padding: 6px 6px 6px 16px;
+  border-radius: 25px;
+  border: 1px solid #e1e5eb;
   transition: all 0.3s;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .input-wrapper:focus-within {
   border-color: #4a6cf7;
   background: white;
-  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+  box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.1);
 }
 
 .icon-btn {
@@ -591,45 +506,42 @@ onMounted(() => {
   cursor: pointer;
   transition: all 0.3s;
   border-radius: 50%;
+  background: transparent;
 }
 
 .emoji-btn {
-  background: #fff3cd;
   color: #ffc107;
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
 }
 
 .emoji-btn:hover {
-  background: #ffc107;
-  color: white;
+  background: #fff3cd;
   transform: scale(1.1);
 }
 
-/* TRANSFER BUTTON - ENHANCED */
+/* TRANSFER BUTTON - Clean */
 .transfer-btn {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-  color: white;
+  background: #f0f2f5;
+  color: #555555;
   width: auto;
-  height: 40px;
-  padding: 0 18px;
-  border-radius: 20px;
-  gap: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  height: 36px;
+  padding: 0 15px;
+  border-radius: 18px;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 13px;
 }
 
 .transfer-btn:hover {
-  background: linear-gradient(135deg, #0da271 0%, #2ec58c 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  background: #4a6cf7;
+  color: white;
 }
 
 .transfer-text {
-  margin-left: 5px;
-  font-size: 13px;
+  margin-left: 4px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -637,9 +549,9 @@ onMounted(() => {
   flex: 1;
   border: none;
   background: transparent;
-  font-size: 15px;
+  font-size: 14px;
   color: #1a1a1a;
-  padding: 10px 0;
+  padding: 8px 0;
   outline: none;
 }
 
@@ -649,80 +561,81 @@ onMounted(() => {
 }
 
 .send-btn {
-  background: linear-gradient(135deg, #4a6cf7 0%, #6a82fb 100%);
+  background: #4a6cf7;
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 20px;
+  padding: 10px 20px;
+  border-radius: 18px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.3s;
   letter-spacing: 0.3px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+  gap: 6px;
 }
 
 .send-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(74, 108, 247, 0.4);
+  background: #3a5ce5;
+  transform: translateY(-1px);
 }
 
-/* Quick Actions */
+/* Clean Quick Actions */
 .quick-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
 }
 
 .quick-action-btn {
-  background: #f0f2f5;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 20px;
-  font-size: 13px;
+  background: transparent;
+  border: 1px solid #e1e5eb;
+  padding: 8px 15px;
+  border-radius: 18px;
+  font-size: 12px;
   color: #555555;
   cursor: pointer;
   transition: all 0.3s;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-weight: 500;
 }
 
 .quick-action-btn:hover {
-  background: #4a6cf7;
-  color: white;
-  transform: translateY(-2px);
+  background: #f8f9fa;
+  border-color: #4a6cf7;
+  color: #4a6cf7;
 }
 
 .quick-action-btn:nth-child(1):hover {
-  background: #10b981;
+  border-color: #10b981;
+  color: #10b981;
 }
 
 .quick-action-btn:nth-child(2):hover {
-  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #f59e0b;
 }
 
 .quick-action-btn:nth-child(3):hover {
-  background: #8b5cf6;
+  border-color: #8b5cf6;
+  color: #8b5cf6;
 }
 
 /* Scrollbar Styling */
 .chat-messages::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 .chat-messages::-webkit-scrollbar-track {
   background: #f1f5f9;
-  border-radius: 3px;
 }
 
 .chat-messages::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .chat-messages::-webkit-scrollbar-thumb:hover {
@@ -730,46 +643,49 @@ onMounted(() => {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .app-container {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    height: auto;
-    padding: 20px;
+    margin: 0;
   }
   
   .chat-container {
-    margin: 10px;
+    margin: 0;
+    border-radius: 0;
+    border: none;
   }
-}
-
-@media (max-width: 768px) {
+  
   .chat-header {
-    padding: 15px 20px;
+    padding: 12px 15px;
   }
   
   .member-name-container h1 {
-    font-size: 18px;
+    font-size: 16px;
+  }
+  
+  .member-avatar {
+    width: 40px;
+    height: 40px;
   }
   
   .message {
     max-width: 85%;
   }
   
+  .chat-messages {
+    padding: 15px;
+  }
+  
   .message-input-container {
-    padding: 15px 20px;
+    padding: 12px 15px;
   }
   
   .send-btn {
-    padding: 10px 18px;
-    font-size: 13px;
+    padding: 8px 15px;
+    font-size: 12px;
   }
   
   .transfer-btn {
-    padding: 0 12px;
+    padding: 0 10px;
   }
   
   .transfer-text {
@@ -778,6 +694,11 @@ onMounted(() => {
   
   .quick-actions {
     flex-wrap: wrap;
+  }
+  
+  .quick-action-btn {
+    padding: 6px 12px;
+    font-size: 11px;
   }
 }
 </style>
