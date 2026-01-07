@@ -2,31 +2,50 @@
   <div class="app">
     <aside class="sidebar">
       <div class="profile">
-        <img src="https://wallpaperaccess.com/full/2580788.jpg" />
-        <h3>Justin Morrison</h3>
-        <p>Software Engineer</p>
-        <span class="streak">🔥 659 Streak</span>
+        <img src="https://wallpaperaccess.com/full/2580788.jpg" alt="avatar" />
+        <h3>{{ userName }}</h3>
+        <p>{{ userRole }}</p>
+        <span class="streak">🔥 {{ userStreak }} Streak</span>
       </div>
 
       <nav>
-        <a :class="{ active: isActive('/dashboard') }" @click.prevent="go('/dashboard')">
+        <!-- CORRECTED PATHS: Remove /app/ prefix -->
+        <a 
+          :class="{ active: isActive('/') }"
+          @click.prevent="go('/')"
+        >
           Dashboard
         </a>
 
-        <a :class="{ active: isActive('/statistics') }" @click.prevent="go('/statistics')">
+        <a
+          href="#"
+          :class="{ active: isActive('/statistics') }"
+          @click.prevent="go('/statistics')"
+        >
           Statistics
         </a>
 
-        <a :class="{ active: isActive('/members') }" @click.prevent="go('/members')">
+        <a
+          href="#"
+          :class="{ active: isActive('/members') }"
+          @click.prevent="go('/members')"
+        >
           Members
         </a>
 
-        <a :class="{ active: isActive('/notifications') }" @click.prevent="go('/notifications')">
-          <span>Notifications</span>
-          <span v-if="unread > 0" class="badge">{{ unread }}</span>
+        <a
+          href="#"
+          :class="{ active: isActive('/notifications') }"
+          @click.prevent="go('/notifications')"
+        >
+          Notifications
         </a>
 
-        <a :class="{ active: isActive('/exchanges') }" @click.prevent="go('/exchanges')">
+        <a
+          href="#"
+          :class="{ active: isActive('/exchanges') }"
+          @click.prevent="go('/exchanges')"
+        >
           Exchanges
         </a>
       </nav>
@@ -41,35 +60,100 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import { useNotificationsStore } from "@/stores/notifications.store";
+import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
-/* ROUTER */
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
 
-/* FUNCTIONS — MUST BE TOP LEVEL */
-function go(path) {
-  router.push(path);
-}
+// User data from localStorage
+const userName = ref('User')
+const userRole = ref('Member')
+const userStreak = ref(0)
+const userBalance = ref(0)
 
-function isActive(path) {
-  return route.path === path;
-}
-
-/* STORE */
-const store = useNotificationsStore();
-const unread = computed(() => store.unreadCount);
-
+// Load user data on component mount
 onMounted(() => {
-  store.init();
-});
+  loadUserData()
+})
 
-/* LOGOUT */
-function logout() {
-  localStorage.removeItem("user-token");
-  router.push("/login");
+const loadUserData = () => {
+  // Get user data from localStorage
+  const name = localStorage.getItem('user-name')
+  const email = localStorage.getItem('user-email')
+  const balance = localStorage.getItem('user-balance')
+  
+  // Set user name (fallback to email or default)
+  if (name && name.trim()) {
+    userName.value = name
+  } else if (email) {
+    // Use email prefix as name
+    userName.value = email.split('@')[0]
+    userName.value = userName.value.charAt(0).toUpperCase() + userName.value.slice(1)
+  }
+  
+  // Set role based on email or default
+  if (email && email.includes('@admin.')) {
+    userRole.value = 'Administrator'
+  } else if (email && (email.includes('google') || email.includes('facebook') || email.includes('wechat'))) {
+    userRole.value = 'Social User'
+  } else {
+    userRole.value = 'Member'
+  }
+  
+  // Calculate streak (demo logic - 1 day for every ¥1000 balance)
+  if (balance) {
+    const balanceNum = parseInt(balance)
+    userStreak.value = Math.floor(balanceNum / 1000) + 1
+    userBalance.value = balanceNum
+  }
+  
+  console.log('User loaded:', {
+    name: userName.value,
+    role: userRole.value,
+    streak: userStreak.value,
+    balance: userBalance.value
+  })
+}
+
+const go = (path) => {
+  router.push(path)
+}
+
+const isActive = (path) => {
+  return route.path === path
+}
+
+const logout = () => {
+  // Clear all user-related localStorage
+  localStorage.removeItem('user-token')
+  localStorage.removeItem('user-id')
+  localStorage.removeItem('user-email')
+  localStorage.removeItem('user-name')
+  localStorage.removeItem('user-password')
+  localStorage.removeItem('user-balance')
+  localStorage.removeItem('user-transactions')
+  localStorage.removeItem('user-createdAt')
+  
+  // Also clear user-specific data if using that system
+  const currentUserId = localStorage.getItem('currentUserId')
+  if (currentUserId) {
+    localStorage.removeItem('currentUserId')
+    // Remove user-specific keys
+    const keysToRemove = []
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i)
+      if (key.startsWith(`user_${currentUserId}_`)) {
+        keysToRemove.push(key)
+      }
+    }
+    keysToRemove.forEach(key => localStorage.removeItem(key))
+  }
+  
+  // Redirect to login
+  router.push('/')
+  
+  console.log('User logged out successfully')
 }
 </script>
 
@@ -91,4 +175,3 @@ function logout() {
   align-items: center;
 }
 </style>
-np
