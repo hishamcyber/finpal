@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'  // ADD THIS LINE
 
 const routes = [
   {
@@ -11,14 +11,14 @@ const routes = [
     name: 'Register',
     component: () => import('@/views/RegisterView.vue')
   },
-  // Protected routes with Layout wrapper
+  // Protected routes - Dashboard as main route
   {
-    path: '/',
-    component: () => import('@/components/mainLayout.vue'), // Lazy loaded
+    path: '/dashboard',
+    component: () => import('@/components/mainLayout.vue'),
     meta: { requiresAuth: true },
     children: [
       {
-        path: 'dashboard',
+        path: '',  // Empty path = default child
         name: 'Dashboard',
         component: () => import('@/views/DashboardView.vue')
       },
@@ -63,7 +63,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL), // Updated for Vite
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 
@@ -73,7 +73,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !isAuthenticated) {
     next('/') // Redirect to login
   } else if ((to.name === 'Login' || to.name === 'Register') && isAuthenticated) {
-    next('/dashboard') // Redirect authenticated users away from auth pages
+    next('/dashboard') // Go to dashboard home
   } else {
     next()
   }
