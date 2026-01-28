@@ -1,24 +1,17 @@
-# finpal
+# FinPal
 
-## Project setup
-```
-npm install
-```
+A personal finance management application built with Vue.js.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Project Overview
+FinPal helps users track expenses, manage budgets, and visualize financial data in an intuitive interface.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 🚀 Quick Start
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Prerequisites
+- Node.js (version 14.x or higher)
+- npm (version 6.x or higher)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Installation
+1. Clone the repository:
+```bash
+git clone https://github.com/hishamcyber/finpal.git
