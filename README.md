@@ -15,12 +15,8 @@ A modern personal finance dashboard built with Vue.js for managing expenses, tra
 **Frontend:**
 - Vue.js 3
 - Vue Router
-- Vuex (State Management)
-- Chart.js (Data Visualization)
-- Tailwind CSS (Styling)
 
 **Development:**
-- ESLint + Prettier
 - Vite (Build Tool)
 
 ## 🚀 Getting Started
