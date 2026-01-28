@@ -1,17 +1,44 @@
-# FinPal
+# FinPal 💰
 
-A personal finance management application built with Vue.js.
+A modern personal finance dashboard built with Vue.js for managing expenses, tracking budgets, and visualizing financial health.
 
-## Project Overview
-FinPal helps users track expenses, manage budgets, and visualize financial data in an intuitive interface.
+## ✨ Features
 
-## 🚀 Quick Start
+- 📊 **Dashboard Overview** - Visualize income, expenses, and savings at a glance
+- 💸 **Expense Tracking** - Log and categorize daily expenses
+- 📈 **Budget Management** - Set and monitor monthly budgets
+- 🎯 **Financial Goals** - Track savings targets and financial objectives
+- 📱 **Responsive Design** - Access from desktop or mobile devices
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- Vue.js 3
+- Vue Router
+- Vuex (State Management)
+- Chart.js (Data Visualization)
+- Tailwind CSS (Styling)
+
+**Development:**
+- ESLint + Prettier
+- Vite (Build Tool)
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (version 14.x or higher)
-- npm (version 6.x or higher)
+- Node.js 16+ and npm
 
 ### Installation
-1. Clone the repository:
+
 ```bash
+# Clone the repository
 git clone https://github.com/hishamcyber/finpal.git
+
+# Navigate to project
+cd finpal
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run serve
