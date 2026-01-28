@@ -24,14 +24,7 @@ A modern personal finance dashboard built with Vue.js for managing expenses, tra
 ### Prerequisites
 - Node.js 16+ and npm
 
-### Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/hishamcyber/finpal.git
-
-# Navigate to project
-cd finpal
 
 # Install dependencies
 npm install
