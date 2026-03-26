@@ -59,6 +59,12 @@ src/
 
 ---
 
+# Screenshot
+<img width="926" height="653" alt="image" src="https://github.com/user-attachments/assets/6a9f6120-651f-49e5-b11f-076bf5ae9893" />
+
+
+---
+
 ## Installation
 
 ```bash
