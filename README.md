@@ -1,30 +1,65 @@
 # FinPal 💰
 
-A modern personal finance dashboard built with Vue.js for managing expenses, tracking budgets, and visualizing financial health.
+FinPal is a personal finance management web application built with Vue.js 3.
+It helps users track expenses, manage shared balances, and visualize financial data through interactive dashboards.
 
-## ✨ Features
+---
 
-- 📊 **Dashboard Overview** - Visualize income, expenses, and savings at a glance
-- 💸 **Expense Tracking** - Log and categorize daily expenses
-- 📈 **Budget Management** - Set and monitor monthly budgets
-- 🎯 **Financial Goals** - Track savings targets and financial objectives
-- 📱 **Responsive Design** - Access from desktop or mobile devices
+## Features
 
-## 🛠️ Tech Stack
+* Track income and expenses
+* View real-time balance overview
+* Manage shared expenses with multiple members
+* Visualize financial data with charts and analytics
+* Filter and search transaction history
+* Export financial data to CSV
+* Basic currency conversion support
 
-**Frontend:**
-- Vue.js 3
-- Vue Router
+---
 
-**Development:**
-- Vite (Build Tool)
+## Tech Stack
 
-## 🚀 Getting Started
+* **Vue.js 3** – Frontend framework
+* **Vue Router 4** – Routing and navigation
+* **Pinia** – State management
+* **Element Plus** – UI components
+* **Chart.js** – Data visualization
+* **Bootstrap Vue** – Responsive layout
 
-### Prerequisites
-- Node.js 16+ and npm
+---
 
-### Installation
+## Technical Highlights
+
+* Implemented centralized state management using **Pinia** for transactions and user balances
+* Built reusable and modular Vue components for scalability
+* Integrated **Chart.js** for dynamic financial analytics
+* Designed structured component-based architecture
+* Implemented transaction filtering and search functionality
+* Managed application state and UI updates efficiently
+
+---
+
+## Project Structure
+```
+src/
+│── components/
+│── views/
+│── store/        # Pinia state management
+│── router/       # Vue Router configuration
+│── assets/
+```
+---
+
+## My Contribution
+
+* Designed overall application architecture
+* Developed core features (dashboard, transactions, analytics)
+* Implemented state management and UI logic
+* Collaborated with a teammate on UI components
+
+---
+
+## Installation
 
 ```bash
 # Clone the repository
@@ -36,20 +71,28 @@ cd finpal
 # Install dependencies
 npm install
 
-# Start development server
+# Run the development server
 npm run serve
-Visit http://localhost:8080 to see the application.
+```
 
-Build for Production
-bash
-npm run build
-📁 Project Structure
-text
-src/
-├── assets/          # Images, fonts, styles
-├── components/      # Reusable Vue components
-├── views/          # Page components
-├── store/          # Vuex state management
-├── router/         # Vue Router configuration
-├── utils/          # Helper functions
-└── App.vue         # Root component
+---
+
+## Future Improvements
+
+* Backend integration (Node.js / Spring Boot)
+* User authentication system
+* Real-time database support
+* Advanced financial insights and predictions
+
+---
+
+## Author
+
+**Hicham Ouahbi**
+GitHub: https://github.com/hishamcyber
+
+---
+
+## License
+
+This project is for educational purposes.
