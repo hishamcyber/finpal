@@ -1,104 +1,97 @@
-# FinPal 💰
+# FinPal
 
-FinPal is a personal finance management web application built with Vue.js 3.
-It helps users track expenses, manage shared balances, and visualize financial data through interactive dashboards.
+FinPal is a modern personal finance management web application built with Vue 3. It allows users to track income and expenses, manage shared balances, analyze financial activity, and visualize spending data through interactive dashboards.
 
----
+## Overview
 
-## Features
-
-* Track income and expenses
-* View real-time balance overview
-* Manage shared expenses with multiple members
-* Visualize financial data with charts and analytics
-* Filter and search transaction history
-* Export financial data to CSV
-* Basic currency conversion support
-
----
+FinPal was designed to simplify personal financial management by providing a clean and intuitive interface for monitoring transactions, managing members, and viewing financial statistics.
 
 ## Tech Stack
 
-* **Vue.js 3** – Frontend framework
-* **Vue Router 4** – Routing and navigation
-* **Pinia** – State management
-* **Element Plus** – UI components
-* **Chart.js** – Data visualization
-* **Bootstrap Vue** – Responsive layout
+* Vue.js 3
+* Vue Router 4
+* Pinia
+* Element Plus
+* Chart.js
+* Bootstrap Vue
 
----
+## Features
 
-## Technical Highlights
-
-* Implemented centralized state management using **Pinia** for transactions and user balances
-* Built reusable and modular Vue components for scalability
-* Integrated **Chart.js** for dynamic financial analytics
-* Designed structured component-based architecture
-* Implemented transaction filtering and search functionality
-* Managed application state and UI updates efficiently
-
----
+* Secure login and registration system
+* Financial dashboard with balance overview
+* Income and expense tracking
+* Shared balance and member management
+* Transaction history and notifications
+* Interactive statistics and analytics
+* Currency exchange support
+* Search and filtering capabilities
 
 ## Project Structure
-```
+
+```text
 src/
-│── components/
-│── views/
-│── store/        # Pinia state management
-│── router/       # Vue Router configuration
-│── assets/
+├── components/
+├── views/
+├── store/
+├── router/
+└── assets/
 ```
----
 
-## My Contribution
+## Preview
 
-* Designed overall application architecture
-* Developed core features (dashboard, transactions, analytics)
-* Implemented state management and UI logic
-* Collaborated with a teammate on UI components
+### Authentication
 
----
+<table>
+  <tr>
+    <td><img src="./Preview/login.png" width="300"></td>
+    <td><img src="./Preview/register.png" width="300"></td>
+  </tr>
+</table>
 
-# Screenshot
-<img width="926" height="653" alt="image" src="https://github.com/user-attachments/assets/6a9f6120-651f-49e5-b11f-076bf5ae9893" />
+### Dashboard
 
+<img src="./Preview/dashboard.png" width="700">
 
----
+### Statistics and Analytics
+
+<table>
+  <tr>
+    <td><img src="./Preview/statistics.png" width="300"></td>
+    <td><img src="./Preview/exchange.png" width="300"></td>
+  </tr>
+</table>
+
+### Members and Notifications
+
+<table>
+  <tr>
+    <td><img src="./Preview/members.png" width="300"></td>
+    <td><img src="./Preview/notification.png" width="300"></td>
+  </tr>
+</table>
 
 ## Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/hishamcyber/finpal.git
 
-# Navigate to project
 cd finpal
 
-# Install dependencies
 npm install
 
-# Run the development server
 npm run serve
 ```
 
----
+## Skills Demonstrated
 
-## Future Improvements
-
-* Backend integration (Node.js / Spring Boot)
-* User authentication system
-* Real-time database support
-* Advanced financial insights and predictions
-
----
+* Frontend development with Vue 3
+* State management using Pinia
+* SPA architecture and routing
+* Component-based design
+* Data visualization with Chart.js
+* Responsive user interface design
+* Financial data management
 
 ## Author
 
-**Hicham Ouahbi**
-GitHub: https://github.com/hishamcyber
-
----
-
-## License
-
-This project is for educational purposes.
+Developed by Hicham Ouahbi.
